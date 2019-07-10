@@ -5371,6 +5371,10 @@ WindowFuncCall:
 	{
 		$$ = &ast.WindowFuncExpr{F: $1, Args: []ast.ExprNode{$3, $5}, FromLast: $7.(bool), IgnoreNull: $8.(bool), Spec: $9.(ast.WindowSpec),}
 	}
+|	"GROUP_CONCAT" '(' SimpleExpr ')' WindowingClause
+	{
+		$$ = &ast.WindowFuncExpr{F: $1, Args: []ast.ExprNode{$3}, Spec: $5.(ast.WindowSpec),}
+	}
 
 OptLeadLagInfo:
 	{
